@@ -4,101 +4,149 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>SYDNEE SWENEE ($SWENEE) — Solana</title>
-  <meta name="description" content="SYDNEE SWENEE ($SWENEE) on Solana. Jeans. Jeans. Jeans energy. The American dream meme — Solana starlet edition. CA: CommingSoon">
+  <meta name="description" content="SYDNEE SWENEE ($SWENEE) on Solana. Soft focus starlet energy. Romantic pink PumpSwap vibe. CA: CommingSoon">
   <meta property="og:title" content="SYDNEE SWENEE ($SWENEE)">
-  <meta property="og:description" content="Jeans energy. Peace signs. Solana starlet. $SWENEE meme coin.">
+  <meta property="og:description" content="Jeans energy. Soft focus. Solana starlet. $SWENEE meme coin.">
   <meta property="og:image" content="/media/banner.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="/media/banner.jpg">
-  <meta name="theme-color" content="#b8ff3c">
+  <meta name="theme-color" content="#ff6b9d">
   <link rel="icon" href="/media/logo.jpg">
   <link rel="apple-touch-icon" href="/media/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <!-- CRT TV intro (first visit / new session). Force show: sessionStorage.removeItem('swenee_intro_seen') then reload -->
+  <!-- CRT TV intro — logo on vintage screen -->
   <div id="tvIntro" class="tv-intro" aria-live="polite">
     <div class="tv-stage">
       <div class="crt">
         <div class="crt-bezel">
           <div class="crt-screen">
-            <div class="crt-snow" aria-hidden="true"></div>
-            <img id="tvGif" class="crt-gif" src="/media/tv-intro.gif" alt="" width="480" height="360">
+            <img id="tvLogo" class="crt-logo" src="/media/logo.jpg" alt="SYDNEE SWENEE" width="512" height="512">
             <div class="crt-scanlines" aria-hidden="true"></div>
             <div class="crt-vignette" aria-hidden="true"></div>
+            <div class="crt-flicker" aria-hidden="true"></div>
           </div>
-          <div class="crt-badge">SWENEE TV</div>
+          <div class="crt-controls" aria-hidden="true">
+            <span class="crt-knob"></span>
+            <span class="crt-knob"></span>
+          </div>
+          <div class="crt-badge">SWENEE TV · 1980</div>
         </div>
-        <div class="crt-legs" aria-hidden="true"></div>
+        <div class="crt-legs" aria-hidden="true">
+          <span></span><span></span>
+        </div>
       </div>
       <button type="button" id="skipIntro" class="skip-btn">SKIP →</button>
-      <p class="tv-hint">1980s signal · black &amp; white · soft focus</p>
+      <p class="tv-hint">old frame · soft signal · tuning in…</p>
     </div>
   </div>
 
   <div id="site" class="site is-hidden">
-    <div class="grain" aria-hidden="true"></div>
-    <div class="glow glow-a" aria-hidden="true"></div>
-    <div class="glow glow-b" aria-hidden="true"></div>
+    <!-- Romantic pink animated background -->
+    <div class="pink-bg" aria-hidden="true">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+      <div class="blob blob-c"></div>
+      <div class="aurora"></div>
+      <canvas id="heartsCanvas" class="hearts-canvas"></canvas>
+    </div>
 
     <header class="topbar">
       <a class="brand" href="/" aria-label="SYDNEE SWENEE">
         <img class="brand-logo" src="/media/logo.jpg" alt="" width="40" height="40">
-        <span class="brand-text">SYDNEE SWENEE</span>
-        <span class="brand-tick">$SWENEE</span>
+        <span class="brand-text">
+          <span class="brand-name">SYDNEE SWENEE</span>
+          <span class="brand-tick">$SWENEE</span>
+        </span>
       </a>
       <nav class="nav-actions">
-        <button id="copyCa" type="button" data-ca="CommingSoon">COPY CA</button>
+        <button id="copyCa" type="button" class="btn-ghost" data-ca="CommingSoon">COPY CA</button>
         <a id="xLink" class="social xlink" href="#" hidden aria-hidden="true">X</a>
         <a id="tgLink" class="social tglink" href="#" hidden aria-hidden="true">TG</a>
-        <button id="buyBtn" class="buy-btn is-disabled" type="button" disabled title="Contract address coming soon">BUY · COMING SOON</button>
+        <button id="buyBtn" class="btn-primary is-disabled" type="button" disabled title="Contract address coming soon">COMING SOON</button>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
+      <section class="banner-wrap">
         <figure class="banner">
           <img src="/media/banner.jpg" alt="SYDNEE SWENEE banner" width="1500" height="500" fetchpriority="high">
         </figure>
-        <div class="hero-row">
-          <img class="hero-logo" src="/media/logo.png" alt="$SWENEE mascot" width="512" height="512">
-          <div class="hero-copy">
-            <p class="eyebrow">SOLANA · MEME · STARLET ENERGY</p>
-            <h1>SYDNEE <span class="lime">SWENEE</span></h1>
-            <p class="sym">$SWENEE</p>
-            <p class="tagline">Jeans. Jeans. Jeans energy. Peace signs. American dream meme — Solana starlet edition.</p>
-            <div class="hero-meta">
-              <span class="pill">Ticker: SWENEE</span>
-              <span class="pill">Chain: Solana</span>
-              <button type="button" class="pill pill-btn" id="copyCaHero" data-ca="CommingSoon">CA: CommingSoon</button>
-            </div>
-            <div class="hero-actions">
-              <button class="buy-btn solid is-disabled" id="buyBtnHero" type="button" disabled>BUY · COMING SOON</button>
-            </div>
-          </div>
-        </div>
       </section>
 
-      <div class="ticker" aria-hidden="true">
-        <div>SYDNEE SWENEE ✦ $SWENEE ✦ JEANS ENERGY ✦ PEACE SIGNS ✦ SOLANA STARLET ✦ AMERICAN DREAM MEME ✦ SYDNEE SWENEE ✦ $SWENEE ✦ JEANS ENERGY ✦ PEACE SIGNS ✦ SOLANA STARLET ✦ AMERICAN DREAM MEME ✦&nbsp;</div>
-      </div>
+      <section class="swap-hero">
+        <p class="eyebrow">SOLANA · MEME · STARLET ENERGY</p>
+        <h1>SYDNEE <em>SWENEE</em></h1>
+        <p class="tagline">Soft focus. Jeans energy. The romantic PumpSwap for Solana’s favorite starlet meme.</p>
+
+        <!-- PumpSwap-style card -->
+        <div class="swap-card" id="swapCard">
+          <div class="swap-card-head">
+            <span class="swap-title">Swap</span>
+            <span class="swap-badge">$SWENEE</span>
+          </div>
+
+          <div class="swap-field">
+            <div class="swap-field-top">
+              <span class="swap-label">Sell</span>
+              <span class="swap-bal">Balance —</span>
+            </div>
+            <div class="swap-field-row">
+              <input id="sellAmount" type="text" inputmode="decimal" placeholder="0.0" value="" autocomplete="off" aria-label="Amount of SOL">
+              <div class="token-chip">
+                <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png" alt="" width="22" height="22" onerror="this.style.display='none'">
+                <span>SOL</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="swap-arrow" aria-label="Flip" disabled>↓</button>
+
+          <div class="swap-field buy-field">
+            <div class="swap-field-top">
+              <span class="swap-label">Buy</span>
+              <span class="swap-bal">Coming soon</span>
+            </div>
+            <div class="swap-field-row">
+              <input id="buyAmount" type="text" placeholder="0.0" value="" readonly aria-label="Amount of SWENEE">
+              <div class="token-chip swenee-chip">
+                <img src="/media/logo.jpg" alt="" width="22" height="22">
+                <span>SWENEE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="swap-meta">
+            <button type="button" class="ca-pill" id="copyCaSwap" data-ca="CommingSoon">
+              CA · <code id="caDisplay">CommingSoon</code>
+              <span class="copy-hint">tap to copy</span>
+            </button>
+          </div>
+
+          <button id="connectBtn" class="connect-btn is-disabled" type="button" disabled>
+            Connect wallet · Coming soon
+          </button>
+          <p class="swap-note">UI preview only · mint not live yet · DYOR</p>
+        </div>
+      </section>
 
       <section class="about panel">
         <div class="about-grid">
           <div>
             <p class="eyebrow">THE LORE</p>
-            <h2>Glam. Cheeky.<br><span class="lime">Chart-ready.</span></h2>
-            <p>SYDNEE SWENEE is the Hollywood-blonde meme homage — white top, olive jacket, double peace signs, zero boardroom energy. Built for timelines, not trademarks. A playful celeb-coin vibe on Solana.</p>
-            <p><strong>$SWENEE</strong> is that energy in ticker form: bright lime, soft focus nostalgia, and a CRT cold open before the homepage. Fan meme only. DYOR.</p>
+            <h2>Glam. Soft focus.<br><em>Chart-ready.</em></h2>
+            <p>SYDNEE SWENEE is the Hollywood-blonde meme homage — white top, olive jacket, double peace signs, zero boardroom energy. Built for timelines, not trademarks.</p>
+            <p><strong>$SWENEE</strong> is that energy in ticker form: blush pink romance, CRT cold open, PumpSwap heart. Fan meme only. DYOR.</p>
           </div>
           <ul class="bullets">
             <li>Jeans energy on main</li>
             <li>Peace signs, not pitch decks</li>
-            <li>CRT intro → soft focus homepage</li>
+            <li>CRT intro → pink PumpSwap home</li>
             <li>CA live when mint drops</li>
           </ul>
         </div>
