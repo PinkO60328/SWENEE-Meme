@@ -1,0 +1,9 @@
+{
+  "name": "swenee-meme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SYDNEE SWENEE ($SWENEE) — Solana meme site with retro CRT intro",
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
