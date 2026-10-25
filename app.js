@@ -125,25 +125,20 @@
     }
   }
 
-  function wireSocial(twitter, telegram) {
+  function wireSocial(twitter) {
     const x = document.getElementById('xLink');
-    const tg = document.getElementById('tgLink');
-    function setLink(el, url) {
-      if (!el) return;
-      if (url) {
-        el.hidden = false;
-        el.removeAttribute('aria-hidden');
-        el.href = url;
-        el.target = '_blank';
-        el.rel = 'noreferrer';
-      } else {
-        el.hidden = true;
-        el.setAttribute('aria-hidden', 'true');
-        el.removeAttribute('href');
-      }
+    if (!x) return;
+    if (twitter) {
+      x.hidden = false;
+      x.removeAttribute('aria-hidden');
+      x.href = twitter;
+      x.target = '_blank';
+      x.rel = 'noreferrer';
+    } else {
+      x.hidden = true;
+      x.setAttribute('aria-hidden', 'true');
+      x.removeAttribute('href');
     }
-    setLink(x, twitter);
-    setLink(tg, telegram);
   }
 
   // Soft romantic floating hearts / sparkles
@@ -231,7 +226,7 @@
 
   wireCopy('CommingSoon');
   wireBuy('CommingSoon', '');
-  wireSocial('https://x.com/SydneeSwenee', '');
+  wireSocial('https://x.com/SydneeSwenee');
 
   fetch('/api/settings')
     .then((r) => r.json())
@@ -239,7 +234,7 @@
       const ca = s.ca || 'CommingSoon';
       wireCopy(ca);
       wireBuy(ca, s.dex || '');
-      wireSocial(s.twitter || 'https://x.com/SydneeSwenee', s.telegram || '');
+      wireSocial(s.twitter || 'https://x.com/SydneeSwenee');
     })
     .catch(() => {});
 })();
