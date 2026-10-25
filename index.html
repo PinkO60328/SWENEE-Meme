@@ -20,13 +20,13 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <!-- CRT TV intro — logo on vintage screen -->
+  <!-- CRT TV intro — video on vintage screen + pink progress -->
   <div id="tvIntro" class="tv-intro" aria-live="polite">
     <div class="tv-stage">
       <div class="crt">
         <div class="crt-bezel">
           <div class="crt-screen">
-            <img id="tvLogo" class="crt-logo" src="/media/logo.jpg" alt="SYDNEE SWENEE" width="512" height="512">
+            <video id="tvVideo" class="crt-video" src="/media/tv-intro.mp4" muted playsinline preload="auto" poster="/media/logo.jpg" aria-label="SYDNEE SWENEE intro"></video>
             <div class="crt-scanlines" aria-hidden="true"></div>
             <div class="crt-vignette" aria-hidden="true"></div>
             <div class="crt-flicker" aria-hidden="true"></div>
@@ -40,6 +40,12 @@
         <div class="crt-legs" aria-hidden="true">
           <span></span><span></span>
         </div>
+      </div>
+      <div class="tv-progress" aria-hidden="true">
+        <div class="tv-progress-track">
+          <div id="tvProgressFill" class="tv-progress-fill"></div>
+        </div>
+        <span id="tvProgressLabel" class="tv-progress-label">TUNING IN…</span>
       </div>
       <button type="button" id="skipIntro" class="skip-btn">SKIP →</button>
       <p class="tv-hint">old frame · soft signal · tuning in…</p>

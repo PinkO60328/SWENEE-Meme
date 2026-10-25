@@ -6,13 +6,36 @@
   const tvIntro = document.getElementById('tvIntro');
   const site = document.getElementById('site');
   const skipBtn = document.getElementById('skipIntro');
+  const tvVideo = document.getElementById('tvVideo');
+  const progressFill = document.getElementById('tvProgressFill');
+  const progressLabel = document.getElementById('tvProgressLabel');
   const toast = document.getElementById('toast');
 
   let dismissed = false;
+  let fallbackTimer = null;
+  let rafId = 0;
+
+  function setProgress(pct) {
+    const p = Math.max(0, Math.min(1, pct));
+    if (progressFill) progressFill.style.width = (p * 100).toFixed(2) + '%';
+    if (progressLabel) {
+      progressLabel.textContent = p >= 0.995 ? 'SIGNAL LOCKED' : 'TUNING IN… ' + Math.round(p * 100) + '%';
+    }
+  }
+
+  function stopVideo() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+    if (fallbackTimer) { clearTimeout(fallbackTimer); fallbackTimer = null; }
+    if (tvVideo) {
+      try { tvVideo.pause(); } catch (_) {}
+    }
+  }
 
   function showSite() {
     if (dismissed) return;
     dismissed = true;
+    stopVideo();
+    setProgress(1);
     try { sessionStorage.setItem(INTRO_KEY, '1'); } catch (_) {}
     if (tvIntro) tvIntro.classList.add('is-out');
     if (site) site.classList.remove('is-hidden');
@@ -30,6 +53,54 @@
     }
   }
 
+  function tickProgress() {
+    if (dismissed) return;
+    if (tvVideo && tvVideo.duration && isFinite(tvVideo.duration) && tvVideo.duration > 0) {
+      setProgress(tvVideo.currentTime / tvVideo.duration);
+    }
+    rafId = requestAnimationFrame(tickProgress);
+  }
+
+  function startIntroVideo() {
+    setProgress(0);
+    if (!tvVideo) {
+      fallbackTimer = setTimeout(showSite, INTRO_MAX_MS);
+      // fake progress if no video element
+      const t0 = performance.now();
+      (function fake() {
+        if (dismissed) return;
+        setProgress((performance.now() - t0) / INTRO_MAX_MS);
+        rafId = requestAnimationFrame(fake);
+      })();
+      return;
+    }
+    tvVideo.muted = true;
+    tvVideo.playsInline = true;
+    tvVideo.loop = false;
+    const onEnded = () => { setProgress(1); showSite(); };
+    tvVideo.addEventListener('ended', onEnded, { once: true });
+    tvVideo.addEventListener('timeupdate', () => {
+      if (tvVideo.duration) setProgress(tvVideo.currentTime / tvVideo.duration);
+    });
+    // Safety: always dismiss after max window even if video stalls
+    fallbackTimer = setTimeout(showSite, INTRO_MAX_MS + 1500);
+    const playPromise = tvVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        // Autoplay blocked — still run timed progress then enter
+        const t0 = performance.now();
+        (function fake() {
+          if (dismissed) return;
+          const p = (performance.now() - t0) / INTRO_MAX_MS;
+          setProgress(p);
+          if (p >= 1) showSite();
+          else rafId = requestAnimationFrame(fake);
+        })();
+      });
+    }
+    rafId = requestAnimationFrame(tickProgress);
+  }
+
   // Force-show: sessionStorage.removeItem('swenee_intro_seen'); location.reload();
   if (!shouldShowIntro()) {
     if (tvIntro) tvIntro.classList.add('is-hidden');
@@ -38,7 +109,7 @@
   } else {
     if (site) site.classList.add('is-hidden');
     if (skipBtn) skipBtn.addEventListener('click', showSite);
-    setTimeout(showSite, INTRO_MAX_MS);
+    startIntroVideo();
   }
 
   function isPlaceholder(ca) {
