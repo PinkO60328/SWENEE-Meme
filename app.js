@@ -231,7 +231,7 @@
 
   wireCopy('CommingSoon');
   wireBuy('CommingSoon', '');
-  wireSocial('', '');
+  wireSocial('https://x.com/SydneeSwenee', '');
 
   fetch('/api/settings')
     .then((r) => r.json())
@@ -239,7 +239,7 @@
       const ca = s.ca || 'CommingSoon';
       wireCopy(ca);
       wireBuy(ca, s.dex || '');
-      wireSocial(s.twitter || '', s.telegram || '');
+      wireSocial(s.twitter || 'https://x.com/SydneeSwenee', s.telegram || '');
     })
     .catch(() => {});
 })();
