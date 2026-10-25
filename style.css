@@ -525,39 +525,24 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 2px 8px rgba(219, 39, 119, 0.15);
 }
 .buy-field { margin-top: 0; }
-.swap-meta { margin: 0.85rem 0; }
-.ca-pill {
-  width: 100%;
-  appearance: none;
-  border: 1px dashed var(--pink-300);
-  background: rgba(255, 245, 248, 0.9);
-  border-radius: 12px;
-  padding: 0.65rem 0.85rem;
+
+/* Buy (left) + COPY CA / X (right) */
+.swap-actions {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: stretch;
+}
+.swap-side {
   display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-  cursor: pointer;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--ink-soft);
-  text-align: left;
-}
-.ca-pill code {
-  font-family: ui-monospace, monospace;
-  font-size: 0.78rem;
-  color: var(--ink);
-  word-break: break-all;
-}
-.ca-pill .copy-hint {
-  margin-left: auto;
-  color: var(--pink-500);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
 }
 a.connect-btn, .connect-btn {
   width: 100%;
+  min-height: 100%;
   appearance: none;
   border: none;
   border-radius: 14px;
@@ -574,12 +559,90 @@ a.connect-btn, .connect-btn {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  text-align: center;
 }
 .connect-btn.is-disabled,
-.connect-btn:disabled {
+.connect-btn:disabled,
+a.connect-btn.is-disabled {
   opacity: 0.7;
   cursor: not-allowed;
   box-shadow: none;
+  pointer-events: none;
+}
+.ca-pill {
+  width: 100%;
+  flex: 1;
+  appearance: none;
+  border: 1px dashed var(--pink-300);
+  background: rgba(255, 245, 248, 0.95);
+  border-radius: 12px;
+  padding: 0.55rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: left;
+  box-sizing: border-box;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ca-pill:hover {
+  background: #fff;
+  border-color: var(--pink-400);
+}
+.ca-pill-label {
+  color: var(--pink-600);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.ca-pill code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--ink);
+  word-break: break-all;
+  line-height: 1.35;
+}
+.ca-pill .copy-hint {
+  color: var(--pink-500);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.swap-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: #fff;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(219, 39, 119, 0.08);
+  transition: transform 0.15s, background 0.15s;
+}
+.swap-x:hover {
+  background: var(--pink-50);
+  transform: translateY(-1px);
+}
+@media (max-width: 560px) {
+  .swap-actions {
+    grid-template-columns: 1fr;
+  }
+  a.connect-btn, .connect-btn {
+    min-height: 3.1rem;
+  }
 }
 .swap-note {
   margin: 0.65rem 0 0;
