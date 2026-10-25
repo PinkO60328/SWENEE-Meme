@@ -95,34 +95,35 @@
     const buyBtn = document.getElementById('buyBtn');
     const connectBtn = document.getElementById('connectBtn');
 
-    if (buyBtn) {
+    function setBuyLink(el, labelComing, labelLive) {
+      if (!el) return;
       if (!valid || !url) {
-        buyBtn.disabled = true;
-        buyBtn.classList.add('is-disabled');
-        buyBtn.textContent = 'COMING SOON';
-        buyBtn.onclick = null;
+        if (el.tagName === 'A') {
+          el.removeAttribute('href');
+          el.setAttribute('aria-disabled', 'true');
+        } else {
+          el.disabled = true;
+          el.onclick = null;
+        }
+        el.classList.add('is-disabled');
+        el.textContent = labelComing;
       } else {
-        buyBtn.disabled = false;
-        buyBtn.classList.remove('is-disabled');
-        buyBtn.textContent = 'BUY';
-        buyBtn.onclick = () => window.open(url, '_blank', 'noopener');
+        if (el.tagName === 'A') {
+          el.href = url;
+          el.target = '_blank';
+          el.rel = 'noopener noreferrer';
+          el.removeAttribute('aria-disabled');
+        } else {
+          el.disabled = false;
+          el.onclick = () => window.open(url, '_blank', 'noopener');
+        }
+        el.classList.remove('is-disabled');
+        el.textContent = labelLive;
       }
     }
 
-    if (connectBtn) {
-      // UI-only — no real wallet while CA is placeholder
-      if (!valid) {
-        connectBtn.disabled = true;
-        connectBtn.classList.add('is-disabled');
-        connectBtn.textContent = 'Connect wallet · Coming soon';
-        connectBtn.onclick = null;
-      } else {
-        connectBtn.disabled = true;
-        connectBtn.classList.add('is-disabled');
-        connectBtn.textContent = 'Connect wallet · Coming soon';
-        connectBtn.onclick = () => showToast('Wallet soon');
-      }
-    }
+    setBuyLink(buyBtn, 'COMING SOON', 'BUY');
+    setBuyLink(connectBtn, 'Connect wallet · Coming soon', 'Buy on pump.fun');
   }
 
   function wireSocial(twitter) {
@@ -224,14 +225,14 @@
     requestAnimationFrame(tick);
   }
 
-  wireCopy('CommingSoon');
-  wireBuy('CommingSoon', '');
+  wireCopy('GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump');
+  wireBuy('GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump', 'https://pump.fun/coin/GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump');
   wireSocial('https://x.com/SydneeSwenee');
 
   fetch('/api/settings')
     .then((r) => r.json())
     .then((s) => {
-      const ca = s.ca || 'CommingSoon';
+      const ca = s.ca || 'GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump';
       wireCopy(ca);
       wireBuy(ca, s.dex || '');
       wireSocial(s.twitter || 'https://x.com/SydneeSwenee');

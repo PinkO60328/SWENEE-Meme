@@ -2,11 +2,12 @@
 
 Solana meme landing with 1980s CRT TV intro.
 
-- **CA:** `CommingSoon` (set `TOKEN_CA` env or update `api/settings.js`)
-- **X:** https://x.com/SydneeSwenee (override via `TWITTER_URL`)
-- **Intro GIF:** `media/tv-intro.gif` — swap the file in place; path stays stable
+- **CA:** `GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump`
+- **Buy:** https://pump.fun/coin/GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump
+- **Chart:** DexScreener pair `CSD2QjUDK9AUVUm9voHZLB83scH9ZQP4nJWwiQyh5Tmz`
+- **X:** https://x.com/SydneeSwenee
+- **Banner:** `media/banner-romantic.jpg` at 3:1 (`object-fit: cover`)
 - **Force intro again:** in DevTools `sessionStorage.removeItem('swenee_intro_seen')` then reload
-- **Banner:** `media/banner.jpg` at 3:1 (`object-fit: cover`)
 
 ```bash
 vercel dev
