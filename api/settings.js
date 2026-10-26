@@ -7,7 +7,7 @@ module.exports = async function handler(req, res) {
   }
 
   const ca = process.env.TOKEN_CA || 'GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump';
-  const twitter = process.env.TWITTER_URL || 'https://x.com/SydneeSwenee';
+  const twitter = process.env.TWITTER_URL || 'https://x.com/';
   const isPlaceholder =
     /^comm?ing\s*soon$/i.test(String(ca).trim()) ||
     String(ca).trim().toLowerCase() === 'comingsoon' ||

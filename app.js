@@ -298,7 +298,7 @@
 
   wireCopy('GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump');
   wireBuy('GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump', 'https://pump.fun/coin/GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump');
-  wireSocial('https://x.com/SydneeSwenee');
+  wireSocial('https://x.com/');
 
   fetch('/api/settings')
     .then((r) => r.json())
@@ -306,7 +306,7 @@
       const ca = s.ca || 'GCN58WHB85WJ2kt3vwsmNUs8yhLTQNGcFguP77AKpump';
       wireCopy(ca);
       wireBuy(ca, s.dex || '');
-      wireSocial(s.twitter || 'https://x.com/SydneeSwenee');
+      wireSocial(s.twitter || 'https://x.com/');
     })
     .catch(() => {});
 })();
